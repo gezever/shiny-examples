@@ -1,6 +1,5 @@
 library(shiny)
 library(SPARQL)
-library(BelgiumMaps.StatBel)
 library(leaflet)
 
 r_colors <- rgb(t(col2rgb(colors()) / 255))
@@ -98,7 +97,7 @@ server <- function(input, output, session) {
         FUN = sum
       )
     
-    data(BE_ADMIN_MUNTY, package = "BelgiumMaps.StatBel")
+    data("data/BE_ADMIN_MUNTY.RData")
     str(BE_ADMIN_MUNTY@data)
     map <-
       merge(
