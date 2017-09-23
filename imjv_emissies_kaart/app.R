@@ -56,9 +56,9 @@ ui <- fluidPage(
         
         tags$div(
           id = "cite",
-          'Data verzameld in het kader van het Integraal Milieu Jaarverslag ',
+          'Integraal Milieu Jaarverslag ',
           tags$em('2004-2017'),
-          ' App. by ',tags$em('Geert Van Haute.')
+          '  by ',tags$em('Geert Van Haute.')
         )
       )
     ),
@@ -131,16 +131,16 @@ server <- function(input, output, session) {
           input$year
         ),
         pal = pal,
-        values = ~ x,
-        position = "bottomleft"
+        values = ~ x, 
+        position = "topleft"
       ) %>%
       addPolygons(
         color = ~ pal(x),
         stroke = FALSE,
         smoothFactor = 0.2,
-        fillOpacity = 0.85,
+        fillOpacity = 0.55,
         popup = sprintf("%s %s",
-                        map$x, 'Ton/jaar')
+                        map$x, 'ton/jaar')
       )
     
     m <-
