@@ -1,24 +1,14 @@
-library(shiny)
 library(SPARQL)
-library(BelgiumMaps.StatBel)
-ui <- fluidPage( 
-  sliderInput(inputId = "year",
-              label = "jaar",
-              value = 25, min = 2000, max = 2020),
-  plotOutput("hist")
-                  )
-server <- function(input, output) {
-  
-  output$hist <- renderPlot({
+
     
     # Step 1 - Set up preliminaries and define query
     # Define the data.gov endpoint
-    endpoint <- "https://id-ontwikkel.milieuinfo.be/imjv/sparql"
+endpoint <- "https://id-ontwikkel.milieuinfo.be/imjv/sparql"
     
     # create query statement
-    query <- "
-PREFIX milieu: <http://id.milieuinfo.be/def#>
-PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+query <- "
+    PREFIX milieu: <http://id.milieuinfo.be/def#>
+    PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
     PREFIX geo: <http://www.w3.org/2003/01/geo/wgs84_pos#>
     PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
     PREFIX http: <http://www.w3.org/2011/http#>
@@ -58,7 +48,5 @@ PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
     df <- qd$results
     #print(df, quote = TRUE, row.names = FALSE)
     full_table<-rbind(df)?
-    write.csv(full_table, file = "full_table_3.csv")
-  })
-}
-shinyApp(ui = ui, server = server)
+    write.csv(full_table, file = "data/full_table1.csv")
+
