@@ -6,7 +6,7 @@ r_colors <- rgb(t(col2rgb(colors()) / 255))
 names(r_colors) <- colors()
 emissiepunten <-
   read.csv("data/full_table.csv", header = TRUE, encoding = "UTF-8")
-
+load("data/BE_ADMIN_MUNTY.RData")
 
 ui <- fluidPage(
   navbarPage(
@@ -31,7 +31,7 @@ ui <- fluidPage(
           class = "panel panel-default",
           fixed = TRUE,
           draggable = TRUE,
-          top = 60,
+          top = 60, 
           left = "auto",
           right = 20,
           bottom = "auto",
@@ -97,7 +97,8 @@ server <- function(input, output, session) {
         FUN = sum
       )
     
-    data("data/BE_ADMIN_MUNTY.RData")
+    data(BE_ADMIN_MUNTY)
+   
     str(BE_ADMIN_MUNTY@data)
     map <-
       merge(
