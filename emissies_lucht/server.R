@@ -7,19 +7,38 @@ library(dplyr)
 # Leaflet bindings are a bit slow; for now we'll just sample to compensate
 set.seed(100)
 #zipdata <- alle_emissies[sample.int(nrow(alle_emissies), 10000),]
-zipdata <- alle_emissies#[sample.int(nrow(alle_emissies), 9000),]
+#zipdata <- alle_emissies#[sample.int(nrow(alle_emissies), 9000),]
 # By ordering by hoeveelheid, we ensure that the (comparatively rare) SuperZIPs
 # will be drawn last and thus be easier to see
-zipdata <- zipdata[order(-zipdata$hoeveelheid),]
+zipdata <- alle_emissies[order(-alle_emissies$hoeveelheid),]
 #emissies <- read.csv(file = "data/filename.csv")
 #saveRDS(emissies, file = "data/emissies.rds")
 #write.csv(zipdata, file = "/tmp/emissies.csv")
+
 
 # sparql endpoint
 #endpoint <- "https://id-ontwikkel.milieuinfo.be/imjv/sparql"
 
 
 function(input, output, session) {
+  
+  ## Jaren en Stoffen ########################################
+  # Hier moet een subset van gemeten stoffen voor het geselecteerde jaar komen
+  # vb.: http://www.statmethods.net/management/subset.html
+  # observe({
+  #   stoffen <- if (is.null(input$year)) character(0) else {
+  #     filter(cleantable, Jaar %in% input$jaar) %>%
+  #       `$`('Stof') %>%
+  #       unique() %>%
+  #       sort()
+  #   }
+  #   stillSelected <- isolate(input$substance[input$substance %in% stoffen])
+  #   updateSelectInput(session, "Stof", choices = stof_jaar$stof,
+  #                     selected = stillSelected)
+  # })
+
+  
+  
 
   ## Interactive Map ###########################################
 
@@ -165,7 +184,9 @@ function(input, output, session) {
   })
 
 
+  
 
+  
   ## Data Explorer ###########################################
   
   observe({

@@ -1,10 +1,10 @@
 library(leaflet)
 
 # Choices for drop-downs
-#vars <- c("Is SuperZIP?" = "superzip",  "Jaar" = "jaar",   "Emissie hoeveelheid" = "hoeveelheid", "Median income" = "income",   "Population" = "adultpop" )
 vars <- c("Emissie hoeveelheid" = "hoeveelheid", "Jaarlijkse omzet van het bedrijf" = "income")
-stoffen <- sort(unique(unlist(alle_emissies$stof)))
-jaren <- sort(unique(unlist(alle_emissies$jaar)))
+stof_jaar <- unique(alle_emissies[,2:3])
+stoffen <- sort(unique(unlist(stof_jaar$stof)))
+jaren <- sort(unique(unlist(stof_jaar$jaar)))
 
 navbarPage("Emissie naar lucht", id="nav",
 
