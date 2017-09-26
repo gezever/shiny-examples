@@ -1,5 +1,4 @@
 library(shiny)
-library(SPARQL)
 library(leaflet)
 
 r_colors <- rgb(t(col2rgb(colors()) / 255))
